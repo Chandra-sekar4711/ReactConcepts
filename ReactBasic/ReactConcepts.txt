@@ -1,0 +1,147 @@
+﻿========================================================================
+REACT + FULL STACK LEARNING PATH (for a 3-year Java Dev)
+Goal: Real conceptual mapping, correct sequence, ready to work in a live
+codebase with a frontend team within ~1 month.
+========================================================================
+
+HOW TO USE THIS FILE
+---------------------
+- Topics are grouped in STAGES. Each stage BUILDS on the one before it.
+  Do not skip a stage even if a topic looks easy.
+- Inside each stage, topics are listed in the order they should be learned.
+- The "WHY THIS ORDER" line explains the mental connection to the next
+  topic - read it, it's the whole point of this sequencing.
+- Do not move to the next STAGE until you can explain the current one
+  out loud without notes.
+
+
+========================================================================
+STAGE 0 - JAVASCRIPT FOUNDATION (You have mostly completed this)
+========================================================================
+1. Variables: var / let / const, scope differences
+2. Array methods: map, filter, reduce, find
+3. Destructuring: arrays and objects
+4. Spread/rest operators
+5. Functions: normal, arrow, higher-order, callbacks
+6. Closures
+7. Promises, async/await
+8. 'this' keyword: normal function vs arrow function
+9. ES6 Modules: import / export (default vs named)
+10. Optional chaining (?.) and nullish coalescing (??)
+
+WHY THIS ORDER: React components are just functions. State updates rely
+on spread/destructuring. Data fetching relies on promises/async-await.
+Everything downstream assumes this is second nature.
+
+
+========================================================================
+STAGE 1 - REACT CORE (Component Thinking)
+========================================================================
+1. JSX syntax (HTML + JS mixed, single parent element rule)
+2. Components (function components, PascalCase naming)
+3. Props (passing data parent -> child, read-only, destructuring props)
+4. Rendering lists with .map() + the "key" prop
+5. Conditional rendering (ternary, &&, early return)
+6. useState (component memory, never mutate state directly)
+7. Event handling (onClick, onChange)
+8. Controlled forms (input value tied to state)
+9. useEffect (side effects, dependency array: [], [dep], no array)
+10. Fetching API data (fetch/axios inside useEffect, storing in state)
+
+WHY THIS ORDER: You cannot understand state (useState) until you know
+what a component renders (JSX/props). You cannot understand useEffect
+until you understand state (it exists to react to state/prop changes).
+Fetching data is the natural first real use of useEffect.
+
+MILESTONE PROJECT: Todo List (add / display / delete using state,
+map, filter) - proves you can combine all of Stage 1.
+
+
+========================================================================
+STAGE 2 - MULTI-COMPONENT APPS (How real codebases are structured)
+========================================================================
+1. Component composition & folder structure (components/, pages/, hooks/)
+2. React Router: BrowserRouter, Routes, Route, Link, useNavigate
+3. URL parameters: useParams (dynamic routes like /user/:id)
+4. Prop drilling (pass data through 3+ component levels manually)
+5. useContext + createContext + Provider (fixes prop drilling)
+6. useReducer (for complex state - forms with many fields)
+7. Custom Hooks (extracting reusable logic, e.g. useFetch())
+
+WHY THIS ORDER: Router comes first because real apps have multiple
+pages. Prop drilling is taught BEFORE Context on purpose - you need to
+feel the pain to understand why Context exists. useReducer and custom
+hooks are "advanced state" - only make sense once useState feels easy.
+
+MILESTONE PROJECT: Multi-page app (Home/About/Profile) with a Context
+for shared state (e.g. logged-in user) and one custom hook.
+
+>>> THIS IS THE STAGE WHERE YOU CAN START READING YOUR TEAM'S CODEBASE
+>>> Most day-to-day frontend team code lives in Stage 1 + Stage 2.
+
+
+========================================================================
+STAGE 3 - BACKEND (Node.js + Express + Database)
+========================================================================
+1. Node.js basics: require vs import, fs module
+2. Express server basics: app.get, app.post, app.listen, req/res
+3. Middleware: express.json(), custom logging middleware
+4. REST API design: GET/POST/PUT/DELETE routes (CRUD)
+5. Connecting a database (MongoDB or PostgreSQL) + basic schema/model
+6. JWT Authentication: signup (hash password), login (issue token)
+7. Protected routes: middleware to verify JWT
+
+WHY THIS ORDER: Express mirrors what you already know from backend Java
+work (routes = controllers, middleware = filters/interceptors) - this
+stage should move FASTER for you than for a typical beginner. Auth is
+placed last because it depends on having working CRUD + DB first.
+
+
+========================================================================
+STAGE 4 - CONNECTING FRONTEND TO BACKEND (Real Full Stack Flow)
+========================================================================
+1. CORS (why it happens, how to fix it between React and Express)
+2. Calling your own backend from React (fetch/axios to localhost API)
+3. Storing JWT in localStorage, sending it in Authorization headers
+4. Protected routes on the frontend (redirect if no token)
+5. Full CRUD from React UI hitting your real backend (not local state)
+6. Environment variables (.env for DB URL, JWT secret, API URLs)
+
+WHY THIS ORDER: This is where "frontend" and "backend" stop being two
+separate skills and become one system - this is literally what a full
+stack role does daily.
+
+MILESTONE PROJECT: Take your Stage 1 Todo List and Stage 2 Auth Context
+and connect them to your real Stage 3 backend, with login-protected
+access.
+
+
+========================================================================
+STAGE 5 - DEPLOYMENT + TEAM-READY POLISH
+========================================================================
+1. Deploy backend (Render / Railway) - get a live API URL
+2. Deploy frontend (Vercel) - connect it to the live backend
+3. Git workflow basics: branches, pull requests, resolving conflicts
+   (ask your team what workflow they use - this matters more than code)
+4. Reading an existing large codebase: trace one feature end-to-end
+   (find the component -> find its API call -> find the backend route)
+
+WHY THIS IS LAST: Once you can deploy and read a live app end-to-end,
+you are functionally ready to sit with your frontend team and
+contribute - not just build toy projects alone.
+
+
+========================================================================
+NOTES
+========================================================================
+- Don't rush a stage just to "finish the month." Understanding Stage 1
+  and 2 deeply matters far more than rushing through Stage 3-5 shallowly,
+  since Stage 1-2 is what you'll touch daily with a frontend team.
+- If a topic takes 2-3 sessions instead of 1, that's normal. Sequence
+  matters more than speed here.
+- When you join your team, ask them: state management library used
+  (Context vs Redux vs Zustand), styling approach (CSS modules vs
+  Tailwind vs styled-components), and API layer (fetch vs axios vs
+  React Query) - these are the real-world variations on top of this
+  core sequence.
+========================================================================

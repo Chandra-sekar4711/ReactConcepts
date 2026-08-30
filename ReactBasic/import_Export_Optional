@@ -1,0 +1,224 @@
+# ES6 Modules (import / export)
+
+## What is a Module?
+
+A **module** is a JavaScript file with its own scope. Modules allow code to be split into multiple files and reused.
+
+---
+
+# export
+
+`export` makes variables, functions, or classes available to other files.
+
+Example:
+
+```javascript
+// math.js
+export function add(a, b) {
+    return a + b;
+}
+```
+
+---
+
+# import
+
+`import` brings exported members from another module.
+
+```javascript
+import { add } from "./math.js";
+
+console.log(add(10, 20));
+```
+
+---
+
+# Named Export
+
+Used when a file exports **multiple items**.
+
+```javascript
+// math.js
+export function add() {}
+export function sub() {}
+export const PI = 3.14;
+```
+
+Import:
+
+```javascript
+import { add, sub, PI } from "./math.js";
+```
+
+**Rules:**
+
+* Uses `{}` (curly braces).
+* Import name must match the exported name.
+* Can rename using `as`.
+
+```javascript
+import { add as addition } from "./math.js";
+```
+
+---
+
+# Default Export
+
+Used when a file has **one main export**.
+
+```javascript
+// Header.jsx
+export default function Header() {}
+```
+
+Import:
+
+```javascript
+import Header from "./Header";
+```
+
+or
+
+```javascript
+import MyHeader from "./Header";
+```
+
+**Rules:**
+
+* No `{}`.
+* Import name can be anything.
+* Only **one default export** is allowed per file.
+
+---
+
+# Default + Named Together
+
+```javascript
+// Employee.js
+export default function Employee() {}
+
+export const company = "ABC";
+```
+
+Import:
+
+```javascript
+import Employee, { company } from "./Employee";
+```
+
+---
+
+# React Best Practice
+
+* **Components** → Usually **default export**.
+* **Utility/helper files** → Usually **named exports**.
+
+---
+
+# Interview Difference
+
+| Named Export             | Default Export          |
+| ------------------------ | ----------------------- |
+| `export const add = ...` | `export default Header` |
+| `import { add }`         | `import Header`         |
+| Uses `{}`                | No `{}`                 |
+| Name must match          | Name can be anything    |
+| Multiple per file        | Only one per file       |
+
+====================================================================================================
+
+# Optional Chaining
+
+# Optional Chaining (`?.`) & Nullish Coalescing (`??`)
+
+## 1. Optional Chaining (`?.`)
+
+Used to **safely access nested properties** without throwing an error if a property is `null` or `undefined`.
+
+**Without `?.`:**
+
+```javascript
+console.log(user.address.city); // ❌ Error if address is undefined
+```
+
+**With `?.`:**
+
+```javascript
+console.log(user.address?.city);
+```
+
+If `address` is `null` or `undefined`, the result is:
+
+```text
+undefined
+```
+
+instead of an error.
+
+---
+
+## 2. Nullish Coalescing (`??`)
+
+Provides a **default value** only when the left side is:
+
+* `null`
+* `undefined`
+
+Example:
+
+```javascript
+const name = null;
+
+console.log(name ?? "Guest");
+```
+
+Output:
+
+```text
+Guest
+```
+
+---
+
+## `||` vs `??`
+
+```javascript
+const count = 0;
+
+console.log(count || 10); // 10 ❌
+console.log(count ?? 10); // 0 ✅
+```
+
+* `||` treats `0`, `false`, and `""` as falsy.
+* `??` only checks for `null` and `undefined`.
+
+---
+
+## React Example
+
+```javascript
+const city = user.address?.city ?? "No City";
+```
+
+If `address` or `city` is missing, `"No City"` is displayed.
+
+---
+
+## Interview Points
+
+### `?.`
+
+* Safely access nested properties.
+* Returns `undefined` instead of throwing an error.
+
+### `??`
+
+* Returns the default value only if the left side is `null` or `undefined`.
+* Does **not** replace `0`, `false`, or `""`.
+
+---
+
+## Memory Trick
+
+* **`?.`** → "If it exists, continue."
+* **`??`** → "If value is `null`/`undefined`, use the default."
