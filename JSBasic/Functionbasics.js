@@ -79,6 +79,7 @@ function add(a, b) {
   return a + b;
 }
 
+
 console.log(add(2, 5)); // 7
 // ✅ Works fine.
 
@@ -278,6 +279,59 @@ function checkage(age)
 checkage(30).then(n =>{ console.log(n); return n}).then(n1=>{console.log(n1); return n1}).catch(reject=> console.log(reject));
 
 
+//Detail Example
+//=================
+
+
+function getuserid(id)
+{
+
+    const promise = new Promise((Resolve,Reject)=>{
+
+      setTimeout(()=>{
+       try{
+        let user = [{id:1,name:"chandrasekar",Age:27},{id:2,name:"RajaSekar",Age:25},{id:3,name:"Balaji",Age:22}]
+       let userdetail = user.find(x=>x.id == id)
+       Resolve(userdetail.name);
+       }
+       catch(ex)
+       {
+        Reject(ex.message);
+       }
+
+     
+      },10)
+
+     });
+     return promise;
+}
+
+function getaddress(name)
+{
+
+    const promise = new Promise((Resolve,Reject)=>{
+
+      setTimeout(()=>{
+
+        try{
+            let user = [{id:1,name:"chandrasekar",Address:"chennai"},{id:2,name:"RajaSekar",Address:"Salem"},{id:3,name:"Balaji",Address:"Pochampaliii"}]
+            let userdetail = user.find(x=>x.name == name)
+            Resolve(userdetail.Address);
+        }
+        catch(ex)
+        {
+            Reject(ex.message)
+        }
+      },10)
+
+     });
+     return promise;
+}
+
+
+getuserid(5).then(x=>getaddress(x)).then(x=>console.log(x)).catch((ex)=>console.log(ex));
+
+
  console.log("********************************  //Async and Await  ******************************************");
  console.log("******** Async & Await ********");
 
@@ -334,11 +388,13 @@ async function stepA() {
 
 
 /*
-fetch() returns a Promise IMMEDIATELY (receipt), not the result.
+fetch() returns a Promise IMMEDIATELY (receipt), not the result .
 await does NOT stop fetch().
-await pauses ONLY the async function until the Promise resolves.
+await pauses ONLY the async function until the Promise resolves .
 Other code continues executing.
 */
+
+// IMPORTANTANT : await pauses the current async function. Everything after that await in that function waits until it resumes. Therefore, if the next async operation is written after the await, it hasn't started yet.
 
 
 // ❌ SLOW (SEQUENTIAL ASYNC)
