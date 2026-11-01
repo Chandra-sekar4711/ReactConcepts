@@ -61,12 +61,24 @@ map, filter) - proves you can combine all of Stage 1.
 STAGE 2 - MULTI-COMPONENT APPS (How real codebases are structured)
 ========================================================================
 1. Component composition & folder structure (components/, pages/, hooks/)
-2. React Router: BrowserRouter, Routes, Route, Link, useNavigate
+2. React Router: BrowserRouter, Routes, Route, Link, useNavigate,Navigate(cpmponent)
 3. URL parameters: useParams (dynamic routes like /user/:id)
 4. Prop drilling (pass data through 3+ component levels manually)
+
 5. useContext + createContext + Provider (fixes prop drilling)
-6. useReducer (for complex state - forms with many fields)
-7. Custom Hooks (extracting reusable logic, e.g. useFetch())
+    - CreateContext
+    - ContextProvider
+    - usecontext(contextdata)
+6.useRef
+7.useReducer
+8.custom hooks
+9.useMemo
+10.Memo
+10.useCallback
+11.useLayouteffect
+12.useImperativeHandle
+13. Custom Hooks (extracting reusable logic, e.g. useFetch())
+
 
 WHY THIS ORDER: Router comes first because real apps have multiple
 pages. Prop drilling is taught BEFORE Context on purpose - you need to

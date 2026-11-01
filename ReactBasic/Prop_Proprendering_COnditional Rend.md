@@ -30,7 +30,16 @@ Props are **read-only (immutable)**. A child component should never modify props
     age={25}
 />
 ```
+## Props aree alsways received by the child as Object
+const users = ["John", "Alex", "Sam"];
 
+return <MainPage users={users} />;
+
+React conceptually gives the child a props object like:
+
+{
+  users: ["John", "Alex", "Sam"]
+}
 ---
 
 ## Child Component

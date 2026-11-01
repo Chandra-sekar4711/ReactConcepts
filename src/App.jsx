@@ -1,26 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { Header } from './Components/Header'
 import './App.css'
+import {MainPage} from './Pages/MainPage'
+import {Product} from './Pages/Product'
+import {Profile} from './Pages/Profile'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import FullPageError from './Pages/FullPageError'
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const arr = ["Boy","Girl,","Man","Woman"];
-  const obj = {"name":"John", "age":30, "city":"New York"};
-  const userData = [
-    {id:1, name:"John", age:30},
-    {id:2, name:"Jane", age:25},
-    {id:3, name:"Bob", age:35},
-    {id:4, name:"Alice", age:28}
-  ];
-
-  return (
-   <>
-   <Header arr={arr} obj={obj} userData={userData}/>
-   </>
+  return(
+    <>
+      <ErrorBoundary fallback={<FullPageError />}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/Product" element={<Product />} />
+        <Route path="/Profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
+    </ErrorBoundary>
+    </>
+  
   )
 }
 

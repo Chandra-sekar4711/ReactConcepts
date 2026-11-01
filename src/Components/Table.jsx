@@ -1,33 +1,43 @@
-export function Table(prop)
-{
-    console.log("Header--->"+prop.data);
-    return(
+import React from 'react';
+import { useContext } from 'react';
+import { contextdata } from '../Pages/MainPage'
+
+
+export default function Table(prop) {
+
+    const data = [];
+    const {responsedata} = prop;
+    console.log("Table component rendered");
+
+    return (
         <>
-        
-        <table border={1}>
+        {data && <p>Welcome, {data}!</p>}
+        <table>
             <thead>
-                <tr>              
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>  
+                <tr>
+                    <th>userId</th>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>completed</th>
+                   
                 </tr>
             </thead>
+
             <tbody>
                 {
-                    prop.data.map((item)=>  
-                    {
+                    Object.entries(responsedata).map(([key,value])=>{
                         return(
-                            <tr key={item.id}>
-                                <td>{item.name}</td>
-                                <td>{item.username}</td>
-                                <td>{item.email}</td>
-                               
-                            </tr>
+                            <tr key={key}>
+                    <td>{key}</td>
+                    <td>{value}</td>
+                </tr>
                         )
                     })
                 }
             </tbody>
         </table>
-</>
-    )
+        <h1>******************************************************************</h1>     
+        </> 
+
+    );
 }
